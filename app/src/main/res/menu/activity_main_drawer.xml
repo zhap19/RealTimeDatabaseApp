@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_client"
+            android:icon="@mipmap/ic_menu_client"
+            android:title="Añadir Cliente" />
+        <item
+            android:id="@+id/nav_charts"
+            android:icon="@mipmap/ic_menu_barchart"
+            android:title="Estadísticas" />
+        <item
+            android:id="@+id/nav_exit"
+            android:icon="@mipmap/ic_menu_exit"
+            android:title="Salir" />
+    </group>
+
+</menu>
