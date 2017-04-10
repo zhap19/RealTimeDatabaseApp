@@ -80,8 +80,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_client) {
-            //Intent intent = new Intent(getApplicationContext(),Scores.class);
-            //startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(),AddClients.class);
+            StartActivity(intent);
 
         } else if (id == R.id.nav_charts) {
 
