@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "879712264893",
+    "firebase_url": "https://realtimedatabase-b8b7a.firebaseio.com",
+    "project_id": "realtimedatabase-b8b7a",
+    "storage_bucket": "realtimedatabase-b8b7a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:879712264893:android:f29b9655b27a5d96",
+        "android_client_info": {
+          "package_name": "com.ensten.robert.realtimedatabase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "879712264893-eb8fpm8kv8kics5vnrnn0fruca54s5eh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ensten.robert.realtimedatabase",
+            "certificate_hash": "d6129533f415aaa433eb54b51913119a60c6e3af"
+          }
+        },
+        {
+          "client_id": "879712264893-k5cp6m1s50acpns0hcjgd2kb8e9vkg2v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUWHdvW7EDYTZd2llPPN0SDUMGD1WfD54"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "879712264893-k5cp6m1s50acpns0hcjgd2kb8e9vkg2v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
