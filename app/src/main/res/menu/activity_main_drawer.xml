@@ -11,9 +11,9 @@
             android:icon="@mipmap/ic_menu_barchart"
             android:title="Estadísticas" />
         <item
-            android:id="@+id/nav_login"
+            android:id="@+id/nav_logout"
             android:icon="@mipmap/ic_menu_exit"
-            android:title="Log-in" />
+            android:title="Log-out" />
         <item
             android:id="@+id/nav_exit"
             android:icon="@mipmap/ic_menu_exit"

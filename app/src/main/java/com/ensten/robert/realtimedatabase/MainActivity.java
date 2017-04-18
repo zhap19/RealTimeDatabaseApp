@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navView;
     DrawerLayout drawerLayout;
 
+    Login login = new Login();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +45,13 @@ public class MainActivity extends AppCompatActivity {
             TextView tvname = (TextView) findViewById(R.id.name);
             TextView tvmail = (TextView) findViewById(R.id.mail);
 
-            tvname.setText(name);
-            tvmail.setText(email);
+            Toast toast1 =
+                    Toast.makeText(getApplicationContext(),
+                            email, Toast.LENGTH_SHORT);
+
+            toast1.show();
+
+            //tvmail.setText(email);
 
 
             // The user's ID, unique to the Firebase project. Do NOT use this value to
@@ -81,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new Graphs();
                         fragmentTransaction = true;
                         break;
+                    case R.id.nav_logout:
+                        FirebaseAuth.getInstance().signOut();
                     case R.id.nav_exit:
                         finish();
                         break;
