@@ -4,7 +4,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_client"
-            android:icon="@mipmap/ic_menu_client"
+            android:icon="@mipmap/ic_menu_socialnet"
             android:title="Añadir Cliente" />
         <item
             android:id="@+id/nav_charts"
@@ -12,7 +12,7 @@
             android:title="Estadísticas" />
         <item
             android:id="@+id/nav_logout"
-            android:icon="@mipmap/ic_menu_exit"
+            android:icon="@mipmap/ic_menu_client"
             android:title="Log-out" />
         <item
             android:id="@+id/nav_exit"
