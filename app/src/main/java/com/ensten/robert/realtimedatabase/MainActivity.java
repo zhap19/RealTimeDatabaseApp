@@ -63,9 +63,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.chart1);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_action_home);
 
         drawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
 
@@ -91,6 +91,10 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_exit:
                         finish();
                         break;
+                    case android.R.id.home:
+                        drawerLayout.openDrawer(GravityCompat.START);
+                        return true;
+
                 }
 
                 if(fragmentTransaction) {

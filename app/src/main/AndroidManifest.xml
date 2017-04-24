@@ -33,6 +33,5 @@
             android:name=".ResetPasswordActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-
     </application>
 </manifest>
