@@ -17,16 +17,8 @@ public class AddClients extends Fragment {
 
     int[] buttons = {R.id.buscadores, R.id.tarjetas, R.id.sociales, R.id.boca, R.id.localización, R.id.otros};
     String[] toasts = {"Buscadores +1", "Tarjetas +1", "Redes Sociales +1", "Boca a boca +1", "Localización +1", "Otros +1"};
-    private View.OnClickListener clickToast = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Toast toast1 =
-                    Toast.makeText(getContext(),
-                            "Toast por defecto", Toast.LENGTH_SHORT);
 
-            toast1.show();
-        }
-    };
+
     public AddClients() {
         // Required empty public constructor
     }
@@ -39,14 +31,19 @@ public class AddClients extends Fragment {
 
         for (int i = 0; i < buttons.length; i++) {
             Button buttonNum = (Button) rootView.findViewById(buttons[i]);
-            buttonNum.setOnClickListener(clickToast);
+            setOnClick(buttonNum, toasts[i]);
 
         }
-
-
         return rootView;
+    }
 
-
-
+    public void setOnClick(final Button btn, final String str) {
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast1 = Toast.makeText(getContext(), str, Toast.LENGTH_SHORT);
+                toast1.show();
+            }
+        });
     }
 }
