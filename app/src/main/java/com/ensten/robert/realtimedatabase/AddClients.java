@@ -7,7 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * Created by Robert on 05/04/2017.
@@ -16,7 +23,10 @@ import android.widget.Toast;
 public class AddClients extends Fragment {
 
     int[] buttons = {R.id.buscadores, R.id.tarjetas, R.id.sociales, R.id.boca, R.id.localización, R.id.otros};
-    String[] toasts = {"Buscadores +1", "Tarjetas +1", "Redes Sociales +1", "Boca a boca +1", "Localización +1", "Otros +1"};
+    String[] toasts = {"Buscadores +1", "Tarjetas +1", "Redes Sociales +1",
+            "Boca a boca +1", "Localización +1", "Otros +1"};
+    TextView prueba;
+
 
 
     public AddClients() {
@@ -34,6 +44,8 @@ public class AddClients extends Fragment {
             setOnClick(buttonNum, toasts[i]);
 
         }
+        prueba = (TextView) rootView.findViewById(R.id.testin);
+        prueba.setText("ASFAS");
         return rootView;
     }
 
@@ -46,4 +58,5 @@ public class AddClients extends Fragment {
             }
         });
     }
+    
 }

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "879712264893-tu6pc6eosdt6bt0vf0o9bq33vrftoedl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ensten.robert.realtimedatabase",
+            "certificate_hash": "ea153894a42577a6587439b6c50ae105fd529673"
+          }
+        },
+        {
           "client_id": "879712264893-eb8fpm8kv8kics5vnrnn0fruca54s5eh.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
