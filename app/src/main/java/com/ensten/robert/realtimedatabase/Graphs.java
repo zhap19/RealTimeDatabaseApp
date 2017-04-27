@@ -27,7 +27,7 @@ public class Graphs extends Fragment {
     DatabaseReference mTarjetasRef = mRootRef.child("tarjetas");
     DatabaseReference mRedesRef = mRootRef.child("redes");
     DatabaseReference mBocaRef = mRootRef.child("boca");
-    DatabaseReference mLocalizacionRef = mRootRef.child("redes");
+    DatabaseReference mLocalizacionRef = mRootRef.child("localizacion");
     DatabaseReference mOtrosRef = mRootRef.child("otros");
 
     public Graphs() {
