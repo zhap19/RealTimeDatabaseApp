@@ -1,10 +1,9 @@
 package com.ensten.robert.realtimedatabase;
 
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navView;
     DrawerLayout drawerLayout;
 
+    public String nombre="";
     Login login = new Login();
 
     @Override
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
-        tx.replace(R.id.content_frame, new AddClients());
+        tx.replace(R.id.content_frame, new Graphs());
         tx.commit();
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
             // Name, email address, and profile photo Url
             String name = user.getDisplayName();
             String email = user.getEmail();
-            Uri photoUrl = user.getPhotoUrl();
 
             TextView tvname = (TextView) findViewById(R.id.name);
             TextView tvmail = (TextView) findViewById(R.id.mail);
@@ -47,15 +46,14 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                             email, Toast.LENGTH_SHORT);
 
+            nombre=user.getEmail();
             toast1.show();
-
-            //tvmail.setText(email);
 
 
             // The user's ID, unique to the Firebase project. Do NOT use this value to
             // authenticate with your backend server, if you have one. Use
             // FirebaseUser.getToken() instead.
-            String uid = user.getUid();
+
         }
 
         // Hide the status bar.
@@ -112,6 +110,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public String getName(){
+        return nombre;
     }
 
     @Override

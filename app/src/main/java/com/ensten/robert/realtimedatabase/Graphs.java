@@ -48,10 +48,9 @@ public class Graphs extends Fragment {
         tLocalizacion =(TextView) rootView.findViewById(R.id.textViewLocalizacion);
         tOtros =(TextView) rootView.findViewById(R.id.textViewOtros);
 
+        
+
         return rootView;
-
-
-
     }
 
     @Override
