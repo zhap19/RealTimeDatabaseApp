@@ -5,13 +5,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Robert on 10/04/2017.
@@ -21,6 +27,7 @@ public class Graphs extends Fragment {
 
     private TextView tTarjetas, tBuscadores, tRedesSociales, tBoca, tLocalizacion,tOtros;
 
+    String [] data={"0","0","0","0","0","0"};
 
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mBuscadoresRef = mRootRef.child("buscadores");
@@ -48,7 +55,22 @@ public class Graphs extends Fragment {
         tLocalizacion =(TextView) rootView.findViewById(R.id.textViewLocalizacion);
         tOtros =(TextView) rootView.findViewById(R.id.textViewOtros);
 
-        
+        // programmatically create a LineChart
+        LineChart chart;
+        chart = new LineChart(getActivity().getApplicationContext());
+
+        // get a layout defined in xml
+        LinearLayout ll = (LinearLayout) rootView.findViewById(R.id.linearLay);
+        ll.addView(chart); // add the programmatically created chart
+
+
+        List<Entry> entries = new ArrayList<Entry>();
+
+        /*for (String dat : data) {
+
+            // turn your data into Entry objects
+            entries.add(new Entry(dat.getValueX(), dat.getValueY()));
+        }*/
 
         return rootView;
     }
@@ -62,6 +84,7 @@ public class Graphs extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String text = dataSnapshot.getValue(String.class);
                 tBuscadores.setText(text);
+                data[0]=text;
             }
 
             @Override
@@ -75,6 +98,7 @@ public class Graphs extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String text = dataSnapshot.getValue(String.class);
                 tTarjetas.setText(text);
+                data[1]=text;
             }
 
             @Override
@@ -88,6 +112,7 @@ public class Graphs extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String text = dataSnapshot.getValue(String.class);
                 tRedesSociales.setText(text);
+                data[2]=text;
             }
 
             @Override
@@ -101,6 +126,7 @@ public class Graphs extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String text = dataSnapshot.getValue(String.class);
                 tBoca.setText(text);
+                data[3]=text;
             }
 
             @Override
@@ -114,6 +140,7 @@ public class Graphs extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String text = dataSnapshot.getValue(String.class);
                 tLocalizacion.setText(text);
+                data[4]=text;
             }
 
             @Override
@@ -127,6 +154,7 @@ public class Graphs extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String text = dataSnapshot.getValue(String.class);
                 tOtros.setText(text);
+                data[5]=text;
             }
 
             @Override
