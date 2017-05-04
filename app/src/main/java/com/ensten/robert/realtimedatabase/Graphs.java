@@ -5,11 +5,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,7 +39,7 @@ public class Graphs extends Fragment {
     DatabaseReference mBocaRef = mRootRef.child("boca");
     DatabaseReference mLocalizacionRef = mRootRef.child("localizacion");
     DatabaseReference mOtrosRef = mRootRef.child("otros");
-
+    PieChart pieChart;
     public Graphs() {
         // Required empty public constructor
     }
@@ -48,29 +51,15 @@ public class Graphs extends Fragment {
         // Inflate the layout for this fragment
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment2_graph, container, false);
 
-        tBuscadores =(TextView) rootView.findViewById(R.id.textViewBuscadores);
-        tTarjetas =(TextView) rootView.findViewById(R.id.textViewTarjetas);
-        tRedesSociales =(TextView) rootView.findViewById(R.id.textViewRedesSociales);
-        tBoca =(TextView) rootView.findViewById(R.id.textViewBoca);
-        tLocalizacion =(TextView) rootView.findViewById(R.id.textViewLocalizacion);
-        tOtros =(TextView) rootView.findViewById(R.id.textViewOtros);
-
-        // programmatically create a LineChart
-        LineChart chart;
-        chart = new LineChart(getActivity().getApplicationContext());
-
-        // get a layout defined in xml
-        LinearLayout ll = (LinearLayout) rootView.findViewById(R.id.linearLay);
-        ll.addView(chart); // add the programmatically created chart
+        tBuscadores = (TextView) rootView.findViewById(R.id.textViewBuscadores);
+        tTarjetas = (TextView) rootView.findViewById(R.id.textViewTarjetas);
+        tRedesSociales = (TextView) rootView.findViewById(R.id.textViewRedesSociales);
+        tBoca = (TextView) rootView.findViewById(R.id.textViewBoca);
+        tLocalizacion = (TextView) rootView.findViewById(R.id.textViewLocalizacion);
+        tOtros = (TextView) rootView.findViewById(R.id.textViewOtros);
+        pieChart = (PieChart) rootView.findViewById(R.id.piechartId);
 
 
-        List<Entry> entries = new ArrayList<Entry>();
-
-        /*for (String dat : data) {
-
-            // turn your data into Entry objects
-            entries.add(new Entry(dat.getValueX(), dat.getValueY()));
-        }*/
 
         return rootView;
     }
@@ -162,5 +151,29 @@ public class Graphs extends Fragment {
 
             }
         });
+
+
+        List<Entry> entries = new ArrayList<>();
+
+        for (int i =0; i<data.length;i++) {
+
+            // turn your data into Entry objects
+            entries.add(new BarEntry(Integer.parseInt(data[i]), i));
+        }
+        PieDataSet dataset = new PieDataSet(entries,"");
+
+        ArrayList<String> labels = new ArrayList<String>();
+        labels.add("Buscadores");
+        labels.add("Tarjetas");
+        labels.add("Redes Sociales");
+        labels.add("Boca a Boca");
+        labels.add("Localización");
+        labels.add("Otros");
+
+        PieData data = new PieData(labels, dataset);
+        dataset.setColors(ColorTemplate.PASTEL_COLORS);
+        pieChart.setData(data);
+        pieChart.notifyDataSetChanged(); // let the chart know it's data changed
+        pieChart.invalidate(); // refresh
     }
 }
