@@ -20,7 +20,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Robert on 10/04/2017.
@@ -40,6 +39,7 @@ public class Graphs extends Fragment {
     DatabaseReference mLocalizacionRef = mRootRef.child("localizacion");
     DatabaseReference mOtrosRef = mRootRef.child("otros");
     PieChart pieChart;
+
     public Graphs() {
         // Required empty public constructor
     }
@@ -153,7 +153,22 @@ public class Graphs extends Fragment {
         });
 
 
-        List<Entry> entries = new ArrayList<>();
+        mRootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                addEntries();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    protected void addEntries(){
+        ArrayList<Entry> entries = new ArrayList<>();
 
         for (int i =0; i<data.length;i++) {
 
@@ -175,5 +190,7 @@ public class Graphs extends Fragment {
         pieChart.setData(data);
         pieChart.notifyDataSetChanged(); // let the chart know it's data changed
         pieChart.invalidate(); // refresh
+        pieChart.notifyDataSetChanged();
     }
+
 }
