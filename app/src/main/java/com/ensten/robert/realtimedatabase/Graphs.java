@@ -26,7 +26,9 @@ import java.util.ArrayList;
 
 public class Graphs extends Fragment {
 
-    private TextView tTarjetas, tBuscadores, tRedesSociales, tBoca, tLocalizacion,tOtros;
+
+    int[] colors= { R.color.GreenYellow, R.color.OrangeRed, R.color.DeepPink, R.color.Purple,R.color.DeepSkyBlue,R.color.Coral };
+    private TextView tTarjetas, tBuscadores, tRedesSociales, tBoca, tLocalizacion,tOtros ,totalCl;
 
     String [] data={"0","0","0","0","0","0"};
 
@@ -39,6 +41,7 @@ public class Graphs extends Fragment {
     DatabaseReference mOtrosRef = mRootRef.child("otros");
     PieChart pieChart;
 
+
     public Graphs() {
         // Required empty public constructor
     }
@@ -50,15 +53,15 @@ public class Graphs extends Fragment {
         // Inflate the layout for this fragment
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment2_graph, container, false);
 
-        tBuscadores = (TextView) rootView.findViewById(R.id.textViewBuscadores);
+       /* tBuscadores = (TextView) rootView.findViewById(R.id.textViewBuscadores);
         tTarjetas = (TextView) rootView.findViewById(R.id.textViewTarjetas);
         tRedesSociales = (TextView) rootView.findViewById(R.id.textViewRedesSociales);
         tBoca = (TextView) rootView.findViewById(R.id.textViewBoca);
         tLocalizacion = (TextView) rootView.findViewById(R.id.textViewLocalizacion);
-        tOtros = (TextView) rootView.findViewById(R.id.textViewOtros);
+        tOtros = (TextView) rootView.findViewById(R.id.textViewOtros);*/
+
+        totalCl = (TextView) rootView.findViewById(R.id.totalClientes);
         pieChart = (PieChart) rootView.findViewById(R.id.piechartId);
-
-
 
         return rootView;
     }
@@ -71,7 +74,7 @@ public class Graphs extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String text = dataSnapshot.getValue(String.class);
-                tBuscadores.setText(text);
+                //tBuscadores.setText(text);
                 data[0]=text;
             }
 
@@ -85,7 +88,7 @@ public class Graphs extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String text = dataSnapshot.getValue(String.class);
-                tTarjetas.setText(text);
+                //tTarjetas.setText(text);
                 data[1]=text;
             }
 
@@ -99,7 +102,7 @@ public class Graphs extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String text = dataSnapshot.getValue(String.class);
-                tRedesSociales.setText(text);
+                //tRedesSociales.setText(text);
                 data[2]=text;
             }
 
@@ -113,7 +116,7 @@ public class Graphs extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String text = dataSnapshot.getValue(String.class);
-                tBoca.setText(text);
+                //tBoca.setText(text);
                 data[3]=text;
             }
 
@@ -127,7 +130,7 @@ public class Graphs extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String text = dataSnapshot.getValue(String.class);
-                tLocalizacion.setText(text);
+                //tLocalizacion.setText(text);
                 data[4]=text;
             }
 
@@ -141,7 +144,7 @@ public class Graphs extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String text = dataSnapshot.getValue(String.class);
-                tOtros.setText(text);
+                //tOtros.setText(text);
                 data[5]=text;
             }
 
@@ -156,6 +159,11 @@ public class Graphs extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 addEntries();
+                int total=0;
+                for(int i=0;i<data.length;i++){
+                    total=total+Integer.parseInt(data[i]);
+                }
+                totalCl.setText("Un total de "+total+" clientes han sido preguntados");
             }
 
             @Override
@@ -184,7 +192,6 @@ public class Graphs extends Fragment {
         labels.add("Localización");
         labels.add("Otros");
 
-        int[] colors= { R.color.GreenYellow, R.color.OrangeRed, R.color.DeepPink, R.color.Purple,R.color.DeepSkyBlue,R.color.Coral };
 
         PieData data = new PieData(labels, dataset);
         dataset.setColors(colors,getContext());
@@ -196,5 +203,4 @@ public class Graphs extends Fragment {
         pieChart.setDrawHoleEnabled(false);
 
     }
-
 }
