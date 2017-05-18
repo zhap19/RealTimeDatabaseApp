@@ -12,7 +12,6 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -185,12 +184,17 @@ public class Graphs extends Fragment {
         labels.add("Localización");
         labels.add("Otros");
 
+        int[] colors= { R.color.GreenYellow, R.color.OrangeRed, R.color.DeepPink, R.color.Purple,R.color.DeepSkyBlue,R.color.Coral };
+
         PieData data = new PieData(labels, dataset);
-        dataset.setColors(ColorTemplate.PASTEL_COLORS);
+        dataset.setColors(colors,getContext());
+        pieChart.setRotationEnabled(false);
         pieChart.setData(data);
         pieChart.notifyDataSetChanged(); // let the chart know it's data changed
         pieChart.invalidate(); // refresh
         pieChart.notifyDataSetChanged();
+        pieChart.setDrawHoleEnabled(false);
+
     }
 
 }
