@@ -5,9 +5,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
@@ -40,7 +42,7 @@ public class Graphs extends Fragment {
     DatabaseReference mLocalizacionRef = mRootRef.child("localizacion");
     DatabaseReference mOtrosRef = mRootRef.child("otros");
     PieChart pieChart;
-
+    Button buscButton,tarjButton,socialButton,bocaButton, localButton,otrosButton;
 
     public Graphs() {
         // Required empty public constructor
@@ -62,6 +64,17 @@ public class Graphs extends Fragment {
 
         totalCl = (TextView) rootView.findViewById(R.id.totalClientes);
         pieChart = (PieChart) rootView.findViewById(R.id.piechartId);
+
+        buscButton = (Button) rootView.findViewById(R.id.buscadoresButton);
+        tarjButton = (Button) rootView.findViewById(R.id.tarjetasButton);
+        socialButton = (Button) rootView.findViewById(R.id.socialesButton);
+        bocaButton = (Button) rootView.findViewById(R.id.bocaButton);
+        localButton = (Button) rootView.findViewById(R.id.localizacionButton);
+        otrosButton = (Button) rootView.findViewById(R.id.otrosButton);
+
+
+
+
 
         return rootView;
     }
@@ -202,5 +215,14 @@ public class Graphs extends Fragment {
         pieChart.notifyDataSetChanged();
         pieChart.setDrawHoleEnabled(false);
 
+        //pieChart.setDrawSliceText(false);
+
+        pieChart.setUsePercentValues(true);
+        pieChart.setDescription("");
+
+
+        Legend legend = pieChart.getLegend();
+
+        legend.setEnabled(false);
     }
 }

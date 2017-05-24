@@ -63,55 +63,79 @@
             android:layout_height="wrap_content"
             android:text="Un total de X clientes fueron preguntados"
             android:textAlignment="center"/>
-        <GridLayout
+
+
+
+        <LinearLayout
+            android:id="@+id/gridLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="32dp"
-            android:columnCount="3"
-            android:rowCount="2">
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:weightSum="3"
+                android:orientation="horizontal">
 
-            <CheckBox
+            <Button
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
                 android:text="Buscadores"
-                android:buttonTint="@color/colorPrimary"
-
-                android:checked="true"
+                android:id="@+id/buscadoresButton"
+                android:backgroundTint="@color/GreenYellow"
                 />
-            <CheckBox
+            <Button
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
                 android:text="Tarjetas"
-                android:buttonTint="@android:color/holo_green_dark"
-                android:checked="true"
-                />
-            <CheckBox
+                android:id="@+id/tarjetasButton"
+                android:backgroundTint="@color/OrangeRed"/>
+
+            <Button
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
                 android:text="Redes Sociales"
-                android:buttonTint="@android:color/holo_orange_dark"
-                android:checked="true"
+                android:id="@+id/socialesButton"
+                android:backgroundTint="@color/DeepPink"
                 />
-            <CheckBox
-                android:text="Boca a boca"
-                android:buttonTint="@android:color/holo_red_dark"
-                android:checked="true"
-                />
-            <CheckBox
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:weightSum="3"
+                android:orientation="horizontal">
+            <Button
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="De boca"
+                android:id="@+id/bocaButton"
+                android:backgroundTint="@color/Purple"/>
+            <Button
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
                 android:text="Localización"
-                android:buttonTint="@color/colorPrimary"
-                android:checked="false"
-                />
-            <CheckBox
+                android:id="@+id/localizacionButton"
+                android:backgroundTint="@color/DeepSkyBlue"/>
+            <Button
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
                 android:text="Otros"
-                android:buttonTint="@color/colorPrimary"
-                android:checked="false"
-                />
+                android:id="@+id/otrosButton"
+                android:backgroundTint="@color/Coral"/>
 
-
-        </GridLayout>
-
+                </LinearLayout>
+        </LinearLayout>
         <Button
             android:id="@+id/butt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TIPO DE GRÁFICA"/>
-
 
     </LinearLayout>
 </ScrollView>
