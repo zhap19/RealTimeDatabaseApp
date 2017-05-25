@@ -63,48 +63,83 @@
             android:layout_height="wrap_content"
             android:text="Un total de X clientes fueron preguntados"
             android:textAlignment="center"/>
-        <GridLayout
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="32dp"
-            android:columnCount="3"
-            android:rowCount="2">
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
             <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Buscadores"
-                android:buttonTint="@color/colorPrimary"
-
+                android:buttonTint="@color/YellowGreen"
+                android:textSize="20dp"
                 android:checked="true"
                 />
             <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Tarjetas"
-                android:buttonTint="@android:color/holo_green_dark"
+                android:buttonTint="@color/OrangeRed"
                 android:checked="true"
+                android:textSize="20dp"
                 />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
             <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Redes Sociales"
-                android:buttonTint="@android:color/holo_orange_dark"
+                android:buttonTint="@color/DeepPink"
                 android:checked="true"
+                android:textSize="20dp"
                 />
             <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Boca a boca"
-                android:buttonTint="@android:color/holo_red_dark"
+                android:buttonTint="@color/Purple"
                 android:checked="true"
+                android:textSize="20dp"
                 />
+                </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
             <CheckBox
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Localización"
-                android:buttonTint="@color/colorPrimary"
-                android:checked="false"
+                android:buttonTint="@color/DeepSkyBlue"
+                android:checked="true"
+                android:textSize="20dp"
                 />
             <CheckBox
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Otros"
-                android:buttonTint="@color/colorPrimary"
-                android:checked="false"
+                android:buttonTint="@color/Coral"
+                android:checked="true"
+                android:textSize="20dp"
                 />
+                </LinearLayout>
 
 
-        </GridLayout>
+        </LinearLayout>
 
         <Button
             android:id="@+id/butt"
