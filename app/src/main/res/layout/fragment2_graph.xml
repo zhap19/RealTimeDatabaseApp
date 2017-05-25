@@ -84,15 +84,16 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
-                android:text="Buscadores"
+                android:text="Google"
                 android:id="@+id/buscadoresButton"
                 android:backgroundTint="@color/GreenYellow"
+                android:enabled="true"
                 />
             <Button
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
-                android:text="Tarjetas"
+                android:text="Tarjeta"
                 android:id="@+id/tarjetasButton"
                 android:backgroundTint="@color/OrangeRed"/>
 
@@ -100,7 +101,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
-                android:text="Redes Sociales"
+                android:text="Redes"
                 android:id="@+id/socialesButton"
                 android:backgroundTint="@color/DeepPink"
                 />

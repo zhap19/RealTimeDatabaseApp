@@ -1,7 +1,11 @@
 package com.ensten.robert.realtimedatabase;
 
+import android.graphics.PorterDuff;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +33,7 @@ import java.util.ArrayList;
 public class Graphs extends Fragment {
 
 
-    int[] colors= { R.color.GreenYellow, R.color.OrangeRed, R.color.DeepPink, R.color.Purple,R.color.DeepSkyBlue,R.color.Coral };
+    int[] colors= { R.color.GreenYellow, R.color.OrangeRed, R.color.DeepPink, R.color.Purple,R.color.DeepSkyBlue,R.color.Chocolate };
     private TextView tTarjetas, tBuscadores, tRedesSociales, tBoca, tLocalizacion,tOtros ,totalCl;
 
     String [] data={"0","0","0","0","0","0"};
@@ -43,6 +47,7 @@ public class Graphs extends Fragment {
     DatabaseReference mOtrosRef = mRootRef.child("otros");
     PieChart pieChart;
     Button buscButton,tarjButton,socialButton,bocaButton, localButton,otrosButton;
+    Boolean bBusc,bTarj,bRedes,bBoca,bLocal,bOtros;
 
     public Graphs() {
         // Required empty public constructor
@@ -72,10 +77,91 @@ public class Graphs extends Fragment {
         localButton = (Button) rootView.findViewById(R.id.localizacionButton);
         otrosButton = (Button) rootView.findViewById(R.id.otrosButton);
 
+        bBusc=true;
+        bTarj=true;
+        bBoca=true;
+        bRedes=true;
+        bLocal=true;
+        bOtros=true;
 
+        buscButton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onClick(View v) {
+                if(bBusc){
+                    buscButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.Gray), PorterDuff.Mode.MULTIPLY);
+                    bBusc=false;
+                }else{
+                    buscButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.GreenYellow), PorterDuff.Mode.MULTIPLY);
+                    bBusc=true;
+                }
+            }
+        });
 
+        tarjButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(bTarj){
+                    tarjButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.Gray), PorterDuff.Mode.MULTIPLY);
+                    bTarj=false;
+                }else{
+                    tarjButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.OrangeRed), PorterDuff.Mode.MULTIPLY);
+                    bTarj=true;
+                }
+            }
+        });
 
+        socialButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(bRedes){
+                    socialButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.Gray), PorterDuff.Mode.MULTIPLY);
+                    bRedes=false;
+                }else{
+                    socialButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.DeepPink), PorterDuff.Mode.MULTIPLY);
+                    bRedes=true;
+                }
+            }
+        });
 
+        bocaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(bBoca){
+                    bocaButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.Gray), PorterDuff.Mode.MULTIPLY);
+                    bBoca=false;
+                }else{
+                    bocaButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.Purple), PorterDuff.Mode.MULTIPLY);
+                    bBoca=true;
+                }
+            }
+        });
+
+        localButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(bLocal){
+                    localButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.Gray), PorterDuff.Mode.MULTIPLY);
+                    bLocal=false;
+                }else{
+                    localButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.DeepSkyBlue), PorterDuff.Mode.MULTIPLY);
+                    bLocal=true;
+                }
+            }
+        });
+
+        otrosButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(bOtros){
+                    otrosButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.Gray), PorterDuff.Mode.MULTIPLY);
+                    bOtros=false;
+                }else{
+                    otrosButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.Chocolate), PorterDuff.Mode.MULTIPLY);
+                    bOtros=true;
+                }
+            }
+        });
         return rootView;
     }
 
@@ -88,7 +174,9 @@ public class Graphs extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String text = dataSnapshot.getValue(String.class);
                 //tBuscadores.setText(text);
-                data[0]=text;
+                if(bBusc) {
+                    data[0] = text;
+                }
             }
 
             @Override
@@ -215,7 +303,7 @@ public class Graphs extends Fragment {
         pieChart.notifyDataSetChanged();
         pieChart.setDrawHoleEnabled(false);
 
-        //pieChart.setDrawSliceText(false);
+        pieChart.setDrawSliceText(false);
 
         pieChart.setUsePercentValues(true);
         pieChart.setDescription("");
