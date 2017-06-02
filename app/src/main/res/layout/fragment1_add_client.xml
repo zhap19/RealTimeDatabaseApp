@@ -42,16 +42,12 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="32dp">
 
-                <TableRow
-                    android:layout_gravity="center_horizontal">
-                    <Button
-                        android:id="@+id/buscadores"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:drawableRight="@mipmap/ic_menu_search"
-                        android:text="BUSCADORES" />
-
-                </TableRow>
+                <Button
+                    android:id="@+id/buscadores"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableRight="@mipmap/ic_menu_search"
+                    android:text="BUSCADORES" />
 
                 <Button
                     android:id="@+id/tarjetas"
