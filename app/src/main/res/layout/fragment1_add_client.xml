@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:showIn="@layout/content_frame">
+    android:layout_height="match_parent">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -37,18 +36,22 @@
                 android:textAlignment="center" />
 
             <TableLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="32dp">
 
+                <TableRow
+                    android:layout_gravity="center_horizontal">
+                    <Button
+                        android:id="@+id/buscadores"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableRight="@mipmap/ic_menu_search"
+                        android:text="BUSCADORES" />
 
-                <Button
-                    android:id="@+id/buscadores"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:drawableRight="@mipmap/ic_menu_search"
-                    android:text="BUSCADORES" />
+                </TableRow>
 
                 <Button
                     android:id="@+id/tarjetas"
@@ -86,16 +89,6 @@
                     android:text="OTROS" />
 
             </TableLayout>
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginTop="60dp"
-                android:text="Un total de X clientes fueron preguntados"
-                android:textAlignment="center" />
-
         </LinearLayout>
     </ScrollView>
 

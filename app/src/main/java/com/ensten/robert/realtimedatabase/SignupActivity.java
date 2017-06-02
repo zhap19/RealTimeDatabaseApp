@@ -1,8 +1,11 @@
+/*
 package com.ensten.robert.realtimedatabase;
 
+*/
 /**
  * Created by Robert on 12/04/2017.
- */
+ *//*
+
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -108,4 +111,4 @@ public class SignupActivity extends AppCompatActivity {
         super.onResume();
         progressBar.setVisibility(View.GONE);
     }
-}
+}*/

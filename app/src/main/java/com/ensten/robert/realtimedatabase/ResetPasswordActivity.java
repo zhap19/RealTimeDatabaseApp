@@ -1,8 +1,11 @@
+/*
 package com.ensten.robert.realtimedatabase;
 
+*/
 /**
  * Created by Robert on 12/04/2017.
- */
+ *//*
+
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -73,4 +76,4 @@ public class ResetPasswordActivity extends AppCompatActivity {
         });
     }
 
-}
+}*/
