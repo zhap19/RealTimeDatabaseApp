@@ -64,8 +64,6 @@
             android:text="Un total de X clientes fueron preguntados"
             android:textAlignment="center"/>
 
-
-
         <LinearLayout
             android:id="@+id/gridLayout"
             android:layout_width="match_parent"

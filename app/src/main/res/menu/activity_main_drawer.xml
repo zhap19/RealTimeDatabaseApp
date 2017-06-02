@@ -10,10 +10,10 @@
             android:id="@+id/nav_charts"
             android:icon="@mipmap/ic_menu_barchart"
             android:title="Estadísticas" />
-        <item
+        <!--<item
             android:id="@+id/nav_logout"
             android:icon="@mipmap/ic_menu_client"
-            android:title="Log-out" />
+            android:title="Log-out" />-->
         <item
             android:id="@+id/nav_exit"
             android:icon="@mipmap/ic_menu_exit"
