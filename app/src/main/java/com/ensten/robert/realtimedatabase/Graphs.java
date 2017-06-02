@@ -13,17 +13,22 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.IValueFormatter;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -312,25 +317,26 @@ public class Graphs extends Fragment {
     }
 
     protected void addEntries() {
-        ArrayList<Entry> entries = new ArrayList<>();
+        ArrayList<PieEntry> entries = new ArrayList<>();
 
         for (int i = 0; i < data.length; i++) {
 
             // turn your data into Entry objects
-            entries.add(new BarEntry(Integer.parseInt(data[i]), i));
+            entries.add(new PieEntry(Integer.parseInt(data[i]), i));
         }
         PieDataSet dataset = new PieDataSet(entries, "");
 
-        ArrayList<String> labels = new ArrayList<String>();
+        dataset.setValueFormatter(new PercentFormatter());
+        /*ArrayList<String> labels = new ArrayList<String>();
         labels.add("Buscadores");
         labels.add("Tarjetas");
         labels.add("Redes Sociales");
         labels.add("Boca a Boca");
         labels.add("Localización");
-        labels.add("Otros");
+        labels.add("Otros");*/
 
 
-        PieData data = new PieData(labels, dataset);
+        PieData data = new PieData(dataset);
         dataset.setColors(colors, getContext());
         pieChart.setRotationEnabled(false);
         pieChart.setData(data);
@@ -339,14 +345,48 @@ public class Graphs extends Fragment {
         pieChart.notifyDataSetChanged();
         pieChart.setDrawHoleEnabled(false);
 
+        pieChart.setNoDataText("");
         pieChart.setDrawSliceText(false);
 
         pieChart.setUsePercentValues(true);
-        pieChart.setDescription("");
-
 
         Legend legend = pieChart.getLegend();
 
         legend.setEnabled(false);
+    }
+    //Format class to change values to %
+    public class PercentFormatter implements IValueFormatter, IAxisValueFormatter
+    {
+
+        protected DecimalFormat mFormat;
+
+        public PercentFormatter() {
+            mFormat = new DecimalFormat("###,###,##0.0");
+        }
+
+        /**
+         * Allow a custom decimalformat
+         *
+         * @param format
+         */
+        public PercentFormatter(DecimalFormat format) {
+            this.mFormat = format;
+        }
+
+        // IValueFormatter
+        @Override
+        public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+            return mFormat.format(value) + " %";
+        }
+
+        // IAxisValueFormatter
+        @Override
+        public String getFormattedValue(float value, AxisBase axis) {
+            return mFormat.format(value) + " %";
+        }
+
+        public int getDecimalDigits() {
+            return 1;
+        }
     }
 }
