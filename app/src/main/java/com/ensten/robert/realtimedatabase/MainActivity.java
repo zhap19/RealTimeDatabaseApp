@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
 
     public String nombre="";
-    Login login = new Login();
+    //Login login = new Login();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +84,8 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new Graphs();
                         fragmentTransaction = true;
                         break;
-                    case R.id.nav_logout:
-                        FirebaseAuth.getInstance().signOut();
+                    //case R.id.nav_logout:
+                    //    FirebaseAuth.getInstance().signOut();
                     case R.id.nav_exit:
                         finish();
                         break;

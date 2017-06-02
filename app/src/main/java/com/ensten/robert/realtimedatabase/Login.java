@@ -1,3 +1,4 @@
+/*
 package com.ensten.robert.realtimedatabase;
 
 
@@ -143,4 +144,4 @@ public class Login extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
-}
+}*/

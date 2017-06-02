@@ -99,6 +99,7 @@ public class Graphs extends Fragment {
                 }
                 readData();
                 addEntries();
+                //refresh chart
                 pieChart.invalidate();
             }
         });
@@ -334,7 +335,7 @@ public class Graphs extends Fragment {
         pieChart.setRotationEnabled(false);
         pieChart.setData(data);
         pieChart.notifyDataSetChanged(); // let the chart know it's data changed
-        pieChart.invalidate(); // refresh
+        pieChart.invalidate();//refresh
         pieChart.notifyDataSetChanged();
         pieChart.setDrawHoleEnabled(false);
 
