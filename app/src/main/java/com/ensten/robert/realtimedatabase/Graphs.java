@@ -33,10 +33,10 @@ import java.util.ArrayList;
 public class Graphs extends Fragment {
 
 
-    int[] colors= { R.color.GreenYellow, R.color.OrangeRed, R.color.DeepPink, R.color.Purple,R.color.DeepSkyBlue,R.color.Chocolate };
-    private TextView tTarjetas, tBuscadores, tRedesSociales, tBoca, tLocalizacion,tOtros ,totalCl;
+    int[] colors = {R.color.GreenYellow, R.color.OrangeRed, R.color.DeepPink, R.color.Purple, R.color.DeepSkyBlue, R.color.Chocolate};
+    private TextView tTarjetas, tBuscadores, tRedesSociales, tBoca, tLocalizacion, tOtros, totalCl;
 
-    String [] data={"0","0","0","0","0","0"};
+    String[] data = {"0", "0", "0", "0", "0", "0"};
 
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mBuscadoresRef = mRootRef.child("buscadores");
@@ -46,8 +46,8 @@ public class Graphs extends Fragment {
     DatabaseReference mLocalizacionRef = mRootRef.child("localizacion");
     DatabaseReference mOtrosRef = mRootRef.child("otros");
     PieChart pieChart;
-    Button buscButton,tarjButton,socialButton,bocaButton, localButton,otrosButton;
-    Boolean bBusc,bTarj,bRedes,bBoca,bLocal,bOtros;
+    Button buscButton, tarjButton, socialButton, bocaButton, localButton, otrosButton;
+    Boolean bBusc, bTarj, bRedes, bBoca, bLocal, bOtros;
 
     public Graphs() {
         // Required empty public constructor
@@ -58,7 +58,7 @@ public class Graphs extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment2_graph, container, false);
+        final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment2_graph, container, false);
 
        /* tBuscadores = (TextView) rootView.findViewById(R.id.textViewBuscadores);
         tTarjetas = (TextView) rootView.findViewById(R.id.textViewTarjetas);
@@ -77,89 +77,109 @@ public class Graphs extends Fragment {
         localButton = (Button) rootView.findViewById(R.id.localizacionButton);
         otrosButton = (Button) rootView.findViewById(R.id.otrosButton);
 
-        bBusc=true;
-        bTarj=true;
-        bBoca=true;
-        bRedes=true;
-        bLocal=true;
-        bOtros=true;
+        bBusc = true;
+        bTarj = true;
+        bBoca = true;
+        bRedes = true;
+        bLocal = true;
+        bOtros = true;
 
         buscButton.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
-                if(bBusc){
+                //change color
+                if (bBusc) {
                     buscButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.Gray), PorterDuff.Mode.MULTIPLY);
-                    bBusc=false;
-                }else{
+                    bBusc = false;
+
+                } else {
                     buscButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.GreenYellow), PorterDuff.Mode.MULTIPLY);
-                    bBusc=true;
+                    bBusc = true;
                 }
+                readData();
+                addEntries();
+                pieChart.invalidate();
             }
         });
 
         tarjButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(bTarj){
+                if (bTarj) {
                     tarjButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.Gray), PorterDuff.Mode.MULTIPLY);
-                    bTarj=false;
-                }else{
+                    bTarj = false;
+                } else {
                     tarjButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.OrangeRed), PorterDuff.Mode.MULTIPLY);
-                    bTarj=true;
+                    bTarj = true;
                 }
+                readData();
+                addEntries();
+                pieChart.invalidate();
             }
         });
 
         socialButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(bRedes){
+                if (bRedes) {
                     socialButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.Gray), PorterDuff.Mode.MULTIPLY);
-                    bRedes=false;
-                }else{
+                    bRedes = false;
+                } else {
                     socialButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.DeepPink), PorterDuff.Mode.MULTIPLY);
-                    bRedes=true;
+                    bRedes = true;
                 }
+                readData();
+                addEntries();
+                pieChart.invalidate();
             }
         });
 
         bocaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(bBoca){
+                if (bBoca) {
                     bocaButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.Gray), PorterDuff.Mode.MULTIPLY);
-                    bBoca=false;
-                }else{
+                    bBoca = false;
+                } else {
                     bocaButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.Purple), PorterDuff.Mode.MULTIPLY);
-                    bBoca=true;
+                    bBoca = true;
                 }
+                readData();
+                addEntries();
+                pieChart.invalidate();
             }
         });
 
         localButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(bLocal){
+                if (bLocal) {
                     localButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.Gray), PorterDuff.Mode.MULTIPLY);
-                    bLocal=false;
-                }else{
+                    bLocal = false;
+                } else {
                     localButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.DeepSkyBlue), PorterDuff.Mode.MULTIPLY);
-                    bLocal=true;
+                    bLocal = true;
                 }
+                readData();
+                addEntries();
+                pieChart.invalidate();
             }
         });
 
         otrosButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(bOtros){
+                if (bOtros) {
                     otrosButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.Gray), PorterDuff.Mode.MULTIPLY);
-                    bOtros=false;
-                }else{
+                    bOtros = false;
+                } else {
                     otrosButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.Chocolate), PorterDuff.Mode.MULTIPLY);
-                    bOtros=true;
+                    bOtros = true;
                 }
+                readData();
+                addEntries();
+                pieChart.invalidate();
             }
         });
         return rootView;
@@ -168,15 +188,25 @@ public class Graphs extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        readData();
+    }
 
+    protected void readData(){
+
+        //Set array values to 0
+        for (int i = 0; i < data.length; i++) {
+            data[i] = "0";
+        }
+
+        //read all data from database
         mBuscadoresRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String text = dataSnapshot.getValue(String.class);
                 //tBuscadores.setText(text);
-                if(bBusc) {
+                if (bBusc)
                     data[0] = text;
-                }
+
             }
 
             @Override
@@ -190,7 +220,8 @@ public class Graphs extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String text = dataSnapshot.getValue(String.class);
                 //tTarjetas.setText(text);
-                data[1]=text;
+                if (bTarj)
+                    data[1] = text;
             }
 
             @Override
@@ -204,7 +235,8 @@ public class Graphs extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String text = dataSnapshot.getValue(String.class);
                 //tRedesSociales.setText(text);
-                data[2]=text;
+                if (bRedes)
+                    data[2] = text;
             }
 
             @Override
@@ -218,7 +250,8 @@ public class Graphs extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String text = dataSnapshot.getValue(String.class);
                 //tBoca.setText(text);
-                data[3]=text;
+                if (bBoca)
+                    data[3] = text;
             }
 
             @Override
@@ -232,7 +265,8 @@ public class Graphs extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String text = dataSnapshot.getValue(String.class);
                 //tLocalizacion.setText(text);
-                data[4]=text;
+                if(bLocal)
+                    data[4] = text;
             }
 
             @Override
@@ -246,7 +280,9 @@ public class Graphs extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String text = dataSnapshot.getValue(String.class);
                 //tOtros.setText(text);
-                data[5]=text;
+
+                if(bOtros)
+                    data[5] = text;
             }
 
             @Override
@@ -255,16 +291,16 @@ public class Graphs extends Fragment {
             }
         });
 
-
+        //get total
         mRootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 addEntries();
-                int total=0;
-                for(int i=0;i<data.length;i++){
-                    total=total+Integer.parseInt(data[i]);
+                int total = 0;
+                for (int i = 0; i < data.length; i++) {
+                    total = total + Integer.parseInt(data[i]);
                 }
-                totalCl.setText("Un total de "+total+" clientes han sido preguntados");
+                totalCl.setText("Un total de " + total + " clientes han sido preguntados");
             }
 
             @Override
@@ -272,18 +308,17 @@ public class Graphs extends Fragment {
 
             }
         });
-
     }
 
-    protected void addEntries(){
+    protected void addEntries() {
         ArrayList<Entry> entries = new ArrayList<>();
 
-        for (int i =0; i<data.length;i++) {
+        for (int i = 0; i < data.length; i++) {
 
             // turn your data into Entry objects
             entries.add(new BarEntry(Integer.parseInt(data[i]), i));
         }
-        PieDataSet dataset = new PieDataSet(entries,"");
+        PieDataSet dataset = new PieDataSet(entries, "");
 
         ArrayList<String> labels = new ArrayList<String>();
         labels.add("Buscadores");
@@ -295,7 +330,7 @@ public class Graphs extends Fragment {
 
 
         PieData data = new PieData(labels, dataset);
-        dataset.setColors(colors,getContext());
+        dataset.setColors(colors, getContext());
         pieChart.setRotationEnabled(false);
         pieChart.setData(data);
         pieChart.notifyDataSetChanged(); // let the chart know it's data changed
